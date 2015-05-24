@@ -1,0 +1,32 @@
+<head>
+  <title>enrolltest</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{> hello}}
+</body>
+
+<template name="hello">
+    {{> atForm}}
+
+    <br>
+    <br>
+    <br>
+    
+    {{#autoForm collection="Users" doc=this id="insertUserForm" type="method" meteormethod="addUser"}}
+        <div class="form-group col-xs-12">
+            <label for="check-number">First Name</label>
+            {{> afFieldInput name='profile.firstName' id='first-name' value=profile.firstName}}<br>
+            <label for="check-number">Last Name</label>
+            {{> afFieldInput name='profile.lastName' id='last-name' value=profile.lastName}}<br>
+            <label for="check-number">Username / Email</label>
+            {{> afFieldInput name='emails.0.address' id='email-address' value=emails.address}}<br>
+            {{> afFieldInput name='emails.0.verified' id='email-verified' type="hidden" value=true}}
+            <label for="role">Role</label>
+            {{> afFieldInput name='profile.roles' id='role' value=profile.roles}}
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    {{/autoForm}}
+</template>
